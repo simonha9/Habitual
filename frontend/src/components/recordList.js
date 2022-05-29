@@ -70,17 +70,23 @@ export default function RecordList() {
     });
   }
 
+  const tableHeader = [
+    "Title",
+    "Action",
+    "Location",
+    "Time",
+    "Edit"
+  ];
+
   // This following section will display the table with the records of individuals.
   return (
     <TableContainer component={Paper}>
       <Table aria-label="Habits Table">
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Action</TableCell>
-            <TableCell>Location</TableCell>
-            <TableCell>Time</TableCell>
-            <TableCell>Edit</TableCell>
+            {tableHeader.map((h) => (
+              <TableCell sx={{ 'font-weight': 'bold' }}>{h}</TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>{recordList()}</TableBody>
