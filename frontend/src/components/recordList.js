@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material"
 
 const Record = (props) => (
-  <tr>
-    <td>{props.record.title}</td>
-    <td>{props.record.action}</td>
-    <td>{props.record.location}</td>
-    <td>{props.record.time}</td>
-    <td>
+  <TableRow 
+    key={props.record.title}
+    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+    >
+    <TableCell component="th" scope="row">{props.record.title}</TableCell>
+    <TableCell aligh="right">{props.record.action}</TableCell>
+    <TableCell aligh="right">{props.record.location}</TableCell>
+    <TableCell aligh="right">{props.record.time}</TableCell>
+    <TableCell aligh="right">
       <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
       <button className="btn btn-link"
-        onClick={() => {
-          props.deleteRecord(props.record._id);
-        }}
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
+         onClick={() => {
+           props.deleteRecord(props.record._id);
+         }}
+       >
+         Delete
+     </button>  
+    </TableCell>
+  </TableRow>
 );
 
 export default function RecordList() {
@@ -68,19 +72,20 @@ export default function RecordList() {
 
   // This following section will display the table with the records of individuals.
   return (
-    <div>
-      <h3>Record List</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Action</th>
-            <th>Location</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>{recordList()}</tbody>
-      </table>
-    </div>
+    <TableContainer component={Paper}>
+      <Table aria-label="Habits Table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Title</TableCell>
+            <TableCell>Action</TableCell>
+            <TableCell>Location</TableCell>
+            <TableCell>Time</TableCell>
+            <TableCell>Edit</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{recordList()}</TableBody>
+      </Table>
+
+    </TableContainer>
   );
 }
