@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { FormControl, TextField } from "@mui/material";
+import "./create.css";
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -8,6 +10,7 @@ export default function Create() {
     level: "",
   });
   const navigate = useNavigate();
+  
 
   // These methods will update the state properties.
   function updateForm(value) {
@@ -41,6 +44,53 @@ export default function Create() {
 
   // This following section will display the form that takes the input from the user.
   return (
+    <>
+    <div>
+      <h3>Create Habit</h3>
+      <FormControl onSubmit={onSubmit}>
+        <div className="form-group">
+          <TextField
+            type="text"
+            className="form-control"
+            id="title"
+            label="Title"
+            value={form.title}
+            onChange={(e) => updateForm({ title: e.target.value })}
+            />
+        </div>
+        <div className="form-group">
+          <TextField
+            type="text"
+            className="form-control"
+            id="action"
+            label="Action"
+            value={form.action}
+            onChange={(e) => updateForm({ action: e.target.value })}
+            />
+        </div>
+        <div className="form-group">
+          <TextField
+            type="text"
+            className="form-control"
+            id="location"
+            label="Location"
+            value={form.location}
+            onChange={(e) => updateForm({ location: e.target.value })}
+            />
+        </div>
+        <div className="form-group">
+          <TextField
+            type="text"
+            className="form-control"
+            id="time"
+            label="Time"
+            value={form.time}
+            onChange={(e) => updateForm({ time: e.target.value })}
+            />
+        </div>
+
+      </FormControl>
+    </div>
     <div>
       <h3>Create Habit</h3>
       <form onSubmit={onSubmit}>
@@ -93,5 +143,6 @@ export default function Create() {
         </div>
       </form>
     </div>
+    </>
   );
 }
