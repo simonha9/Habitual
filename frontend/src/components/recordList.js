@@ -85,7 +85,7 @@ export default function RecordList() {
         <TableHead>
           <TableRow>
             {tableHeader.map((h) => (
-              <TableCell sx={{ 'font-weight': 'bold' }}>{h}</TableCell>
+              <TableCell key={h} sx={{ 'fontWeight': 'bold' }}>{h}</TableCell>
             ))}
           </TableRow>
         </TableHead>

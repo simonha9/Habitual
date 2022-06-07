@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import { FormControl, TextField } from "@mui/material";
+import "./edit.css";
 
 export default function Edit() {
   const [form, setForm] = useState({
@@ -69,55 +71,58 @@ export default function Edit() {
   return (
     <div>
       <h3>Update Habit</h3>
-      <form onSubmit={onSubmit}>
+      <br/>
+      <FormControl onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input
+          <TextField
             type="text"
             className="form-control"
             id="title"
-            value={form.title}
+            label="Title"
+            value={form.title || ''}
             onChange={(e) => updateForm({ title: e.target.value })}
-          />
+            />
         </div>
         <div className="form-group">
-          <label htmlFor="action">Action</label>
-          <input
+          <TextField
             type="text"
             className="form-control"
             id="action"
-            value={form.action}
+            label="Action"
+            value={form.action || ''}
             onChange={(e) => updateForm({ action: e.target.value })}
-          />
+            />
         </div>
         <div className="form-group">
-          <label htmlFor="location">Location</label>
-          <input
+          <TextField
             type="text"
             className="form-control"
             id="location"
-            value={form.location}
+            label="Location"
+            value={form.location || ''}
             onChange={(e) => updateForm({ location: e.target.value })}
-          />
+            />
         </div>
         <div className="form-group">
-          <label htmlFor="time">Time</label>
-          <input
+          <TextField
             type="text"
             className="form-control"
             id="time"
-            value={form.time}
+            label="Time"
+            value={form.time || ''}
             onChange={(e) => updateForm({ time: e.target.value })}
-          />
+            />
         </div>
-        <div className="form-group">
+
+      </FormControl>
+      <div className="form-group">
           <input
             type="submit"
             value="Update Record"
             className="btn btn-primary"
+            onClick={onSubmit}
           />
         </div>
-      </form>
     </div>
   );
 }

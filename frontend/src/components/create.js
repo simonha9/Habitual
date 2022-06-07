@@ -44,7 +44,6 @@ export default function Create() {
 
   // This following section will display the form that takes the input from the user.
   return (
-    <>
     <div>
       <h3>Create Habit</h3>
       <FormControl onSubmit={onSubmit}>
@@ -88,61 +87,15 @@ export default function Create() {
             onChange={(e) => updateForm({ time: e.target.value })}
             />
         </div>
-
-      </FormControl>
-    </div>
-    <div>
-      <h3>Create Habit</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            value={form.title}
-            onChange={(e) => updateForm({ title: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="action">Action</label>
-          <input
-            type="text"
-            className="form-control"
-            id="action"
-            value={form.action}
-            onChange={(e) => updateForm({ action: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="location">Location</label>
-          <input
-            type="text"
-            className="form-control"
-            id="location"
-            value={form.location}
-            onChange={(e) => updateForm({ location: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="time">Time</label>
-          <input
-            type="text"
-            className="form-control"
-            id="time"
-            value={form.time}
-            onChange={(e) => updateForm({ time: e.target.value })}
-          />
-        </div>
         <div className="form-group">
           <input
             type="submit"
             value="Create Record"
             className="btn btn-primary"
+            onClick={onSubmit}
           />
         </div>
-      </form>
+      </FormControl>
     </div>
-    </>
   );
 }
