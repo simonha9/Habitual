@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { FormControl, TextField } from "@mui/material";
+import { FormControl, TextField, Button, Typography } from "@mui/material";
 import "./create.css";
+import "./base.css"
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -42,10 +43,16 @@ export default function Create() {
     navigate("/");
   }
 
+  function clearFields() {
+    setForm({ title: "", action: "", location: "", time: "" });
+  }
+
   // This following section will display the form that takes the input from the user.
   return (
     <div>
-      <h3>Create Habit</h3>
+      <Typography sx={{paddingTop: "5px"}} variant="h5" color="text.secondary">
+          Create a new Habit
+        </Typography>
       <FormControl onSubmit={onSubmit}>
         <div className="form-group">
           <TextField
@@ -87,13 +94,17 @@ export default function Create() {
             onChange={(e) => updateForm({ time: e.target.value })}
             />
         </div>
-        <div className="form-group">
-          <input
-            type="submit"
-            value="Create Record"
+        <div className="form-group buttons">
+          <Button
+            variant="outlined"
+            className="btn btn-primary"
+            onClick={clearFields}
+          > Clear Fields </Button>
+          <Button
+            variant="outlined"
             className="btn btn-primary"
             onClick={onSubmit}
-          />
+          > Create Habit </Button>
         </div>
       </FormControl>
     </div>
