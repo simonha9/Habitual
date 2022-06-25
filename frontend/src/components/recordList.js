@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditIcon from '@mui/icons-material/Edit';
+import "./recordList.css"
+import { useNavigate } from "react-router-dom"
 
 const Record = (props) => (
   <TableRow 
@@ -12,20 +16,23 @@ const Record = (props) => (
     <TableCell aligh="right">{props.record.location}</TableCell>
     <TableCell aligh="right">{props.record.time}</TableCell>
     <TableCell aligh="right">
-      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
-      <button className="btn btn-link"
+      <EditIcon className="icon" onClick={() => {
+        props.routeChange(`/edit/${props.record._id}`)
+      }}/>
+      <DeleteIcon
+        className="icon"
          onClick={() => {
            props.deleteRecord(props.record._id);
          }}
        >
-         Delete
-     </button>  
+     </DeleteIcon>  
     </TableCell>
   </TableRow>
 );
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
+  const navigate = useNavigate();
 
   // This method fetches the records from the database.
   useEffect(() => {
@@ -65,17 +72,21 @@ export default function RecordList() {
           record={record}
           deleteRecord={() => deleteRecord(record._id)}
           key={record._id}
+          routeChange={(path) => routeChange(path)}
         />
       );
     });
+  }
+
+  function routeChange(path) {
+    navigate(path);
   }
 
   const tableHeader = [
     "Title",
     "Action",
     "Location",
-    "Time",
-    "Edit"
+    "Time"
   ];
 
   // This following section will display the table with the records of individuals.
